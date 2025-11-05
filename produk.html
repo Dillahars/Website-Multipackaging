@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - Indopack Multipackaging</title>
+    <link rel="icon" href="https://via.placeholder.com/32" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- GLOBAL & SHARED STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #333; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: #0A2463; }
+        .btn { display: inline-block; padding: 12px 30px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; border-radius: 50px; transition: all 0.3s ease; }
+        .btn-primary { background-color: #FF7F11; color: #fff; }
+        .btn-primary:hover { background-color: #e67300; transform: translateY(-2px); }
+        .btn-secondary { border: 2px solid #0A2463; color: #0A2463; }
+        .btn-secondary:hover { background-color: #0A2463; color: #fff; }
+        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 15px 30px; z-index: 1000; transition: all 0.4s ease; background-color: #0A2463; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; color: #FFFFFF; text-decoration: none; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { color: #FFFFFF; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: #FF7F11; }
+        .cta-button { background-color: #FF7F11; color: #FFFFFF; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; transition: all 0.3s ease; }
+        .cta-button:hover { background-color: #e67300; transform: translateY(-2px); }
+        .footer { background-color: #050514; color: #aaa; padding: 60px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-column h3 { color: #fff; margin-bottom: 20px; font-size: 1.2rem; }
+        .footer-column p, .footer-column a { color: #aaa; text-decoration: none; line-height: 2; }
+        .footer-column a:hover { color: #FF7F11; }
+        .social-links a { font-size: 1.5rem; margin-right: 15px; }
+        .footer-bottom { text-align: center; border-top: 1px solid #333; padding-top: 20px; font-size: 0.9rem; }
+        @media (max-width: 768px) { .navbar { flex-direction: column; gap: 15px; } .nav-links { gap: 20px; } }
+
+        /* --- PAGE SPECIFIC STYLES --- */
+        .page-hero { background: #0A2463; color: #fff; padding: 150px 0 80px; text-align: center; }
+        .page-hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+
+        /* --- Product Filter --- */
+        .filter-buttons { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 25px; border: 2px solid #0A2463; background: #fff; color: #0A2463; border-radius: 50px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; transition: all 0.3s ease; }
+        .filter-btn.active, .filter-btn:hover { background-color: #0A2463; color: #fff; }
+
+        /* --- Product Grid --- */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .product-card { background: #fff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        .product-card img { width: 100%; height: 220px; object-fit: cover; }
+        .product-card-content { padding: 25px; }
+        .product-card-content h3 { color: #0A2463; margin-bottom: 10px; font-size: 1.2rem; }
+        .product-card-content p { color: #666; margin-bottom: 20px; font-size: 0.95rem; }
+        
+        /* Hide products by default for JS filter */
+        .product-card { display: none; }
+        .product-card.show { display: block; }
+
+        @media (max-width: 768px) { .page-hero h1 { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">Indopack.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="tentang.html">Tentang Kami</a></li>
+                <li><a href="layanan.html">Layanan</a></li>
+                <li><a href="produk.html" class="active">Produk</a></li>
+                <li><a href="portofolio.html">Portofolio</a></li>
+                <li><a href="kontak.html">Hubungi Kami</a></li>
+            </ul>
+            <a href="kontak.html" class="cta-button">Minta Penawaran</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ==================== PAGE HERO ==================== -->
+        <section class="page-hero">
+            <div class="container">
+                <h1>Katalog Produk Kami</h1>
+                <p>Pilih dari berbagai macam kemasan siap pakai atau kustom untuk kebutuhan bisnis Anda.</p>
+            </div>
+        </section>
+
+        <!-- ==================== PRODUCTS SECTION ==================== -->
+        <section class="section">
+            <div class="container">
+                <!-- Filter Buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Semua</button>
+                    <button class="filter-btn" data-filter="makanan">Makanan</button>
+                    <button class="filter-btn" data-filter="kosmetik">Kosmetik</button>
+                    <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid">
+                    <!-- Produk 1 -->
+                    <div class="product-card show" data-category="makanan">
+                        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=2070" alt="Standing Pouch">
+                        <div class="product-card-content">
+                            <h3>Standing Pouch Ziplock</h3>
+                            <p>Kemasan fleksibel yang praktis untuk berbagai produk makanan kering, snack, dan kopi.</p>
+                            <!-- TOMBOL DIUBAH -->
+                            <a href="#" class="btn btn-primary whatsapp-buy-btn" data-title="Standing Pouch Ziplock">Beli Sekarang</a>
+                        </div>
+                    </div>
+                    <!-- Produk 2 -->
+                    <div class="product-card show" data-category="kosmetik">
+                        <img src="https://images.unsplash.com/photo-1610437993858-53572ebc4a51?q=80&w=2070" alt="Paper Box">
+                        <div class="product-card-content">
+                            <h3>Paper Box Premium</h3>
+                            <p>Box kertas dengan pilihan finishing (laminasi, emboss) untuk produk kosmetik dan gift.</p>
+                            <!-- TOMBOL DIUBAH -->
+                            <a href="#" class="btn btn-primary whatsapp-buy-btn" data-title="Paper Box Premium">Beli Sekarang</a>
+                        </div>
+                    </div>
+                    <!-- Produk 3 -->
+                    <div class="product-card show" data-category="ecommerce">
+                        <img src="https://images.unsplash.com/photo-1626901978236-2a7367f0e6b1?q=80&w=2070" alt="Mailer Box">
+                        <div class="product-card-content">
+                            <h3>Mailer Box</h3>
+                            <p>Kemasan pengiriman yang kuat dan mudah dirakit, sempurna untuk toko online Anda.</p>
+                            <!-- TOMBOL DIUBAH -->
+                            <a href="#" class="btn btn-primary whatsapp-buy-btn" data-title="Mailer Box">Beli Sekarang</a>
+                        </div>
+                    </div>
+                    <!-- Produk 4 -->
+                    <div class="product-card show" data-category="makanan">
+                        <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=2070" alt="Botol Plastik">
+                        <div class="product-card-content">
+                            <h3>Botol Plastik PET</h3>
+                            <p>Botol food grade yang aman untuk minuman, sirup, dan produk cair lainnya.</p>
+                            <!-- TOMBOL DIUBAH -->
+                            <a href="#" class="btn btn-primary whatsapp-buy-btn" data-title="Botol Plastik PET">Beli Sekarang</a>
+                        </div>
+                    </div>
+                    <!-- Produk 5 -->
+                    <div class="product-card show" data-category="kosmetik">
+                        <img src="https://images.unsplash.com/photo-1556228720-195a624e8d98?q=80&w=2070" alt="Jar Kosmetik">
+                        <div class="product-card-content">
+                            <h3>Jar Kosmetik</h3>
+                            <p>Wadah plastik atau kaca untuk krim, serum, dan produk perawatan kulit lainnya.</p>
+                            <!-- TOMBOL DIUBAH -->
+                            <a href="#" class="btn btn-primary whatsapp-buy-btn" data-title="Jar Kosmetik">Beli Sekarang</a>
+                        </div>
+                    </div>
+                    <!-- Produk 6 -->
+                    <div class="product-card show" data-category="ecommerce">
+                        <img src="https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?q=80&w=2070" alt="Packing Tape">
+                        <div class="product-card-content">
+                            <h3>Packing Tape Kustom</h3>
+                            <p>Lakutan kardus dengan desain logo atau brand Anda untuk meningkatkan keamanan paket.</p>
+                            <!-- TOMBOL DIUBAH -->
+                            <a href="#" class="btn btn-primary whatsapp-buy-btn" data-title="Packing Tape Kustom">Beli Sekarang</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column"><h3>Indopack Multipackaging</h3><p>Solusi kemasan inovatif untuk bisnis Anda. Terpercaya, berkualitas, dan berkelanjutan.</p></div>
+                <div class="footer-column"><h3>Link Cepat</h3><a href="index.html">Beranda</a><br><a href="tentang.html">Tentang Kami</a><br><a href="layanan.html">Layanan</a></div>
+                <div class="footer-column"><h3>Kontak</h3><p>Jl. Contoh Alamat No. 123, Jakarta</p><p>Email: info@indopack.co.id</p><p>Telepon: (021) 1234-5678</p></div>
+                <div class="footer-column"><h3>Ikuti Kami</h3><div class="social-links"><a href="#">f</a><a href="#">ig</a><a href="#">in</a></div></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2024 Indopack Multipackaging. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Header Script
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { header.classList.add('scrolled'); } 
+            else { header.classList.remove('scrolled'); }
+        });
+
+        // Product Filter Script
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        // Show all products on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            productCards.forEach(card => card.classList.add('show'));
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                productCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block'; // Use block for grid layout
+                        setTimeout(() => card.classList.add('show'), 10); // Re-add show class for animation
+                    } else {
+                        if (card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => card.classList.add('show'), 10);
+                        } else {
+                            card.classList.remove('show');
+                            setTimeout(() => card.style.display = 'none', 300); // Hide after transition
+                        }
+                    }
+                });
+            });
+        });
+
+        // --- WHATSAPP BUY BUTTON SCRIPT ---
+        const whatsappBuyButtons = document.querySelectorAll('.whatsapp-buy-btn');
+        const phoneNumber = '6281381260503'; // Nomor WhatsApp Anda
+
+        whatsappBuyButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                // Mencegah link berpindah halaman
+                event.preventDefault();
+
+                // Ambil nama produk dari atribut data-title
+                const title = button.getAttribute('data-title');
+
+                // Buat pesan
+                const message = `Halo Indopack, saya tertarik dengan produk "${title}". Bisa dibantu info lebih lanjut?`;
+
+                // Buat URL WhatsApp
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+                // Buka URL di tab baru
+                window.open(whatsappUrl, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>

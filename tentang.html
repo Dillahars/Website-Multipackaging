@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - Indopack Multipackaging</title>
+    <link rel="icon" href="https://via.placeholder.com/32" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- GLOBAL & SHARED STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* --- FITUR SMOOTH SCROLL --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #333; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: #0A2463; }
+        .btn { display: inline-block; padding: 12px 30px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; border-radius: 50px; transition: all 0.3s ease; }
+        .btn-primary { background-color: #FF7F11; color: #fff; }
+        .btn-primary:hover { background-color: #e67300; transform: translateY(-2px); }
+        .btn-secondary { border: 2px solid #0A2463; color: #0A2463; }
+        .btn-secondary:hover { background-color: #0A2463; color: #fff; }
+        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 15px 30px; z-index: 1000; transition: all 0.4s ease; background-color: #0A2463; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; color: #FFFFFF; text-decoration: none; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { color: #FFFFFF; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: #FF7F11; }
+        .cta-button { background-color: #FF7F11; color: #FFFFFF; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; transition: all 0.3s ease; }
+        .cta-button:hover { background-color: #e67300; transform: translateY(-2px); }
+        .footer { background-color: #050514; color: #aaa; padding: 60px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-column h3 { color: #fff; margin-bottom: 20px; font-size: 1.2rem; }
+        .footer-column p, .footer-column a { color: #aaa; text-decoration: none; line-height: 2; }
+        .footer-column a:hover { color: #FF7F11; }
+        .social-links a { font-size: 1.5rem; margin-right: 15px; }
+        .footer-bottom { text-align: center; border-top: 1px solid #333; padding-top: 20px; font-size: 0.9rem; }
+        @media (max-width: 768px) { .navbar { flex-direction: column; gap: 15px; } .nav-links { gap: 20px; } }
+
+        /* --- PAGE SPECIFIC STYLES --- */
+        .page-hero {
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            /* Background Banner Foto dengan Overlay */
+            background: linear-gradient(rgba(10, 36, 99, 0.7), rgba(10, 36, 99, 0.7)), 
+                        url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+        }
+        .page-hero h1 { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); }
+        .page-hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto; text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); }
+
+        /* --- VISI & MISI SECTION --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-content img { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .about-content h2 { color: #0A2463; margin-bottom: 20px; font-size: 2rem; }
+        .about-content p { margin-bottom: 20px; font-size: 1.05rem; }
+        .about-content strong { color: #FF7F11; }
+
+        /* --- NILAI-NILAI SECTION --- */
+        .values { background-color: #F5F5F5; }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .value-item {
+            background: #fff;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .value-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .value-icon {
+            font-size: 3.5rem;
+            color: #FF7F11;
+            margin-bottom: 20px;
+        }
+        .value-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #0A2463;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .page-hero { height: 50vh; }
+            .page-hero h1 { font-size: 2.5rem; }
+            .about-content { grid-template-columns: 1fr; gap: 40px; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="main-header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">Indopack.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="tentang.html" class="active">Tentang Kami</a></li>
+                <li><a href="layanan.html">Layanan</a></li>
+                <li><a href="produk.html">Produk</a></li>
+                <li><a href="portofolio.html">Portofolio</a></li>
+                <li><a href="kontak.html">Hubungi Kami</a></li>
+            </ul>
+            <a href="kontak.html" class="cta-button">Minta Penawaran</a>
+        </nav>
+    </header>
+    <main>
+        <!-- ==================== HERO SECTION ==================== -->
+        <section class="page-hero" id="beranda">
+            <div class="container">
+                <h1>Tentang Indopack Multipackaging</h1>
+                <p>Kami berdedikasi untuk menjadi mitra terpercaya dalam solusi kemasan yang inovatif dan berkelanjutan.</p>
+            </div>
+        </section>
+
+        <!-- ==================== VISI & MISI SECTION ==================== -->
+        <section class="section" id="visi-misi">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text" data-animate="left">
+                        <h2>Visi & Misi Kami</h2>
+                        <p><strong>Visi:</strong> Menjadi produsen kemasan terdepan di Indonesia yang diakui karena inovasi, kualitas, dan keberlanjutan.</p>
+                        <p><strong>Misi:</strong> Memberikan solusi kemasan yang tidak hanya melindungi produk, tetapi juga meningkatkan nilai brand dan pengalaman pelanggan. Kami berkomitmen pada proses produksi yang efisien, ramah lingkungan, dan selalu memprioritaskan kepuasan klien.</p>
+                        <a href="layanan.html" class="btn btn-primary">Lihat Layanan Kami</a>
+                    </div>
+                    <div class="about-image" data-animate="right">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070" alt="Pabrik Packaging Modern">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== NILAI-NILAI KAMI SECTION ==================== -->
+        <section class="values section" id="nilai">
+            <div class="container">
+                <h2 class="section-title">Nilai-Nilai Kami</h2>
+                <div class="values-grid">
+                    <div class="value-item" data-animate="left">
+                        <div class="value-icon">🌱</div>
+                        <h3>Kebertanian</h3>
+                        <p>Kami memprioritaskan material dan proses yang ramah lingkungan untuk mendukung masa depan yang lebih baik.</p>
+                    </div>
+                    <div class="value-item" data-animate="right">
+                        <div class="value-icon">💡</div>
+                        <h3>Inovasi</h3>
+                        <p>Kami terus berinovasi dalam desain dan teknologi untuk memberikan solusi kemasan yang terdepan.</p>
+                    </div>
+                    <div class="value-item" data-animate="left">
+                        <div class="value-icon">🤝</div>
+                        <h3>Integritas</h3>
+                        <p>Kami menjunjung tinggi kejujuran, transparansi, dan komitmen dalam setiap hubungan bisnis.</p>
+                    </div>
+                    <div class="value-item" data-animate="right">
+                        <div class="value-icon">🏆</div>
+                        <h3>Kualitas</h3>
+                        <p>Standar kualitas tertinggi adalah jaminan kami untuk setiap produk yang meninggalkan pabrik.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column"><h3>Indopack Multipackaging</h3><p>Solusi kemasan inovatif untuk bisnis Anda. Terpercaya, berkualitas, dan berkelanjutan.</p></div>
+                <div class="footer-column"><h3>Link Cepat</h3><a href="index.html">Beranda</a><br><a href="tentang.html">Tentang Kami</a><br><a href="layanan.html">Layanan</a></div>
+                <div class="footer-column"><h3>Kontak</h3><p>Jl. Contoh Alamat No. 123, Jakarta</p><p>Email: info@indopack.co.id</p><p>Telepon: (021) 1234-5678</p></div>
+                <div class="footer-column"><h3>Ikuti Kami</h3><div class="social-links"><a href="#">f</a><a href="#">ig</a><a href="#">in</a></div></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2024 Indopack Multipackaging. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        // --- STICKY HEADER SCRIPT ---
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { header.classList.add('scrolled'); } 
+            else { header.classList.remove('scrolled'); }
+        });
+
+        // --- ON-SCROLL ANIMATION SCRIPT ---
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) { return; }
+                
+                const element = entry.target;
+                element.style.opacity = 1;
+                element.style.transform = 'translateX(0)';
+                observer.unobserve(element);
+            });
+        }, observerOptions);
+
+        const animatedElements = document.querySelectorAll('[data-animate]');
+
+        animatedElements.forEach(el => {
+            const direction = el.dataset.animate;
+            el.style.opacity = 0;
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            
+            if (direction === 'left') {
+                el.style.transform = 'translateX(-100px)';
+            } else if (direction === 'right') {
+                el.style.transform = 'translateX(100px)';
+            }
+            
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
