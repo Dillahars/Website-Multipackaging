@@ -42,7 +42,29 @@
         .cta-button { background-color: #FF7F11; color: #FFFFFF; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; transition: all 0.3s ease; }
         .cta-button:hover { background-color: #e67300; transform: translateY(-2px); }
 
-        /* --- HERO SECTION (DIUBAH) --- */
+        /* --- HAMBURGER MENU --- */
+        .hamburger {
+            display: none; /* Sembunyikan di desktop */
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25px;
+            height: 21px;
+        }
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #FFFFFF;
+            border-radius: 3px;
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+
+        /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -52,20 +74,16 @@
             color: #FFFFFF;
             position: relative;
             overflow: hidden;
-            /* Background dihapus, akan diganti dengan iframe */
         }
 
-        /* --- Video Background Container --- */
         .video-bg {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
             min-width: 100%;
             min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1; /* Menempatkan video di belakang konten */
+            transform: translate(-50%, -50%);
+            z-index: -1;
         }
         .video-bg iframe {
             position: absolute;
@@ -73,10 +91,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Agar interaksi iframe tidak mengganggu konten di atasnya */
+            pointer-events: none;
         }
         
-        /* --- Overlay Gradient untuk Teks --- */
         .hero::before {
             content: '';
             position: absolute;
@@ -85,7 +102,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-            z-index: 1; /* Berada di atas video, di bawah teks */
+            z-index: 1;
         }
 
         .hero-content { 
@@ -93,7 +110,7 @@
             padding: 0 20px; 
             animation: fadeInUp 1s ease-out; 
             position: relative; 
-            z-index: 2; /* Pastikan konten berada di atas overlay dan video */
+            z-index: 2; 
         }
         .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); }
         .hero p { font-size: 1.2rem; margin-bottom: 2rem; font-weight: 400; text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); }
@@ -133,14 +150,50 @@
         .social-links a { font-size: 1.5rem; margin-right: 15px; }
         .footer-bottom { text-align: center; border-top: 1px solid #333; padding-top: 20px; font-size: 0.9rem; }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE DESIGN --- */
+
+        /* Tablet (Landscape) */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3rem; }
+            .section-title { font-size: 2.2rem; }
+        }
+
+        /* Tablet (Portrait) & Large Mobile */
         @media (max-width: 768px) {
-            .navbar { flex-direction: column; gap: 15px; }
-            .nav-links { gap: 20px; }
+            .hamburger { display: flex; } /* Tampilkan hamburger */
+            .nav-links { 
+                position: fixed; 
+                left: -100%; /* Sembunyikan di luar layar */
+                top: 70px; /* Sesuaikan dengan tinggi header */
+                flex-direction: column; 
+                background-color: #0A2463; 
+                width: 100%; 
+                text-align: center; 
+                transition: 0.3s; 
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05); 
+                padding: 2rem 0;
+                gap: 0;
+            }
+            .nav-links.active { left: 0; /* Tampilkan menu saat aktif */ }
+            .nav-links li { margin: 1rem 0; }
+            .cta-button { display: none; } /* Sembunyikan tombol CTA di nav mobile */
+
             .hero h1 { font-size: 2.5rem; }
             .hero p { font-size: 1rem; }
-            .hero-buttons .btn { display: block; width: 80%; margin: 10px auto; }
             .section-title { font-size: 2rem; }
+            .section { padding: 60px 0; }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 576px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 0.9rem; }
+            .section-title { font-size: 1.8rem; }
+            .section { padding: 50px 0; }
+            .stat-item h3 { font-size: 2.5rem; }
+            .features-grid, .stats-grid, .testimonials-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-column { margin-bottom: 30px; }
         }
     </style>
 </head>
@@ -150,31 +203,33 @@
     <header class="header" id="main-header">
         <nav class="navbar">
             <a href="index.html" class="logo">Indopack.</a>
-                <ul class="nav-links">
-                    <li><a href="index.html">Beranda</a></li>
-                    <li><a href="tentang.html">Tentang Kami</a></li>
-                    <li><a href="layanan.html">Layanan</a></li>
-                    <li><a href="produk.html">Produk</a></li>
-                    <li><a href="portofolio.html">Portofolio</a></li>
-                    <li><a href="kontak.html">Hubungi Kami</a></li>
-                </ul>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="tentang.html">Tentang Kami</a></li>
+                <li><a href="layanan.html">Layanan</a></li>
+                <li><a href="produk.html">Produk</a></li>
+                <li><a href="portofolio.html">Portofolio</a></li>
+                <li><a href="kontak.html">Hubungi Kami</a></li>
+            </ul>
             <a href="kontak.html" class="cta-button">Minta Penawaran</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
 
     <main>
         <!-- ==================== HERO ==================== -->
         <section class="hero" id="beranda">
-            <!-- ==================== VIDEO BACKGROUND (DIPERBAIKI) ==================== -->
             <div class="video-bg">
-                <!-- Link ditambahkan parameter autoplay=1 dan muted=1 -->
                 <iframe src="https://drive.google.com/file/d/1usEVfcmEPeWCLiTfxlFR33ffQER2sB_K/preview?autoplay=1&muted=1" 
                         frameborder="0" 
                         allow="autoplay; encrypted-media" 
                         allowfullscreen>
                 </iframe>
             </div>
-
             <div class="hero-content">
                 <h1>Meningkatkan Brand Anda Melalui Kemasan Berkualitas.</h1>
                 <p>Indopack Multipackaging adalah mitra terpercaya Anda untuk solusi kemasan kreatif, fungsional, dan berkelanjutan.</p>
@@ -241,7 +296,7 @@
             <div class="footer-grid">
                 <div class="footer-column"><h3>Indopack Multipackaging</h3><p>Solusi kemasan inovatif untuk bisnis Anda. Terpercaya, berkualitas, dan berkelanjutan.</p></div>
                 <div class="footer-column"><h3>Link Cepat</h3><a href="index.html">Beranda</a><br><a href="tentang.html">Tentang Kami</a><br><a href="layanan.html">Layanan</a></div>
-                <div class="footer-column"><h3>Kontak</h3><p>Jl. Contoh Alamat No. 123, Jakarta</p><p>Email: info@indopack.co.id</p><p>Telepon: (021) 1234-5678</p></div>
+                <div class="footer-column"><h3>Kontak</h3><p>KP.NAGGEWER 1, Desa/Kelurahan Nagrak, Kec. Gunung Putri, Kab. Bogor, Provinsi Jawa Barat.</p><p>Email: info@indopack.co.id</p><p>WhatsApp +62 819-5199-599</p></div>
                 <div class="footer-column"><h3>Ikuti Kami</h3><div class="social-links"><a href="#">f</a><a href="#">ig</a><a href="#">in</a></div></div>
             </div>
             <div class="footer-bottom"><p>&copy; 2024 Indopack Multipackaging. All Rights Reserved.</p></div>
@@ -256,19 +311,31 @@
             else { header.classList.remove('scrolled'); }
         });
 
+        // --- HAMBURGER MENU SCRIPT ---
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Tutup menu saat salah satu link diklik
+        document.querySelectorAll('.nav-links a').forEach(n => n.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+        }));
+
         // --- ON-SCROLL ANIMATION SCRIPT ---
         const observerOptions = {
-            root: null, // relative to the viewport
-            threshold: 0.1, // 10% of the element is visible
-            rootMargin: '0px 0px -50px 0px' // trigger a bit earlier
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver(function(entries, observer) {
             entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                }
-                
+                if (!entry.isIntersecting) { return; }
                 const element = entry.target;
                 element.style.opacity = 1;
                 element.style.transform = 'translateX(0)';
@@ -276,10 +343,8 @@
             });
         }, observerOptions);
 
-        // Select all elements to animate
         const animatedElements = document.querySelectorAll('[data-animate]');
 
-        // Apply initial styles and observe each element
         animatedElements.forEach(el => {
             const direction = el.dataset.animate;
             el.style.opacity = 0;
