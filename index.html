@@ -11,6 +11,86 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+<!-- ==================== META SEO DASAR ==================== -->
+<meta name="title" content="Indopack Multipackaging - Solusi Kemasan Inovatif dan Berkelanjutan">
+<meta name="description" content="Indopack Multipackaging menyediakan solusi kemasan kreatif, fungsional, dan berkelanjutan untuk meningkatkan citra merek bisnis Anda.">
+<meta name="keywords" content="Indopack, Multipackaging, kemasan inovatif, solusi kemasan, desain kemasan, jasa kemasan, packaging Indonesia, kemasan berkelanjutan, kemasan produk, pabrik kemasan, packaging Bogor, packaging Jawa Barat">
+<meta name="author" content="Indopack Multipackaging">
+<meta name="robots" content="index, follow">
+<meta name="language" content="id-ID">
+<meta name="distribution" content="global">
+<meta name="rating" content="general">
+<link rel="canonical" href="https://www.indopack.co.id/">
+
+<!-- ==================== OPEN GRAPH (FACEBOOK / LINKEDIN / WA) ==================== -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="id_ID">
+<meta property="og:title" content="Indopack Multipackaging - Solusi Kemasan Inovatif dan Berkelanjutan">
+<meta property="og:description" content="Indopack Multipackaging menghadirkan kemasan yang menarik, fungsional, dan ramah lingkungan untuk berbagai industri di Indonesia.">
+<meta property="og:url" content="https://www.indopack.co.id/">
+<meta property="og:site_name" content="Indopack Multipackaging">
+<meta property="og:image" content="https://via.placeholder.com/600x315.png?text=Indopack+Multipackaging">
+<meta property="og:image:alt" content="Indopack Multipackaging - Solusi Kemasan Inovatif">
+
+<!-- ==================== TWITTER CARD ==================== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Indopack Multipackaging - Solusi Kemasan Inovatif">
+<meta name="twitter:description" content="Solusi kemasan profesional untuk bisnis Anda — inovatif, efisien, dan berkelanjutan.">
+<meta name="twitter:image" content="https://via.placeholder.com/600x315.png?text=Indopack+Multipackaging">
+<meta name="twitter:site" content="@indopack">
+<meta name="twitter:creator" content="@indopack">
+
+<!-- ==================== META TEKNIS TAMBAHAN ==================== -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="theme-color" content="#FF7F11">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+
+<!-- ==================== SCHEMA JSON-LD (ORGANIZATION + WEBSITE) ==================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Indopack Multipackaging",
+  "url": "https://www.indopack.co.id/",
+  "logo": "https://via.placeholder.com/512.png?text=Indopack+Logo",
+  "description": "Indopack Multipackaging menyediakan solusi kemasan inovatif, fungsional, dan berkelanjutan untuk berbagai industri di Indonesia.",
+  "email": "info@indopack.co.id",
+  "telephone": "+62 819-5199-599",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "KP. Naggewer 1, Desa Nagrak, Kec. Gunung Putri, Kab. Bogor, Provinsi Jawa Barat",
+    "addressLocality": "Bogor",
+    "addressRegion": "Jawa Barat",
+    "postalCode": "16963",
+    "addressCountry": "ID"
+  },
+  "sameAs": [
+    "https://www.facebook.com/indopack",
+    "https://www.instagram.com/indopack",
+    "https://www.linkedin.com/company/indopack"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Indopack Multipackaging",
+  "url": "https://www.indopack.co.id/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.indopack.co.id/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+    
     <style>
         /* --- GLOBAL STYLES --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,6 +110,105 @@
         .btn-primary:hover { background-color: #e67300; transform: translateY(-2px); }
         .btn-secondary { border: 2px solid #0A2463; color: #0A2463; }
         .btn-secondary:hover { background-color: #0A2463; color: #fff; }
+
+        /* --- NOTIFIKASI PROMO --- */
+        .promo-notification {
+            position: fixed;
+            top: 100px;
+            right: -400px;
+            width: 350px;
+            background: linear-gradient(135deg, #FF7F11, #e67300);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            transition: right 0.5s ease-out;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .promo-notification.show {
+            right: 20px;
+        }
+        
+        .promo-notification::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .promo-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .promo-content {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .promo-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .promo-description {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .promo-code {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .promo-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+            z-index: 2;
+        }
+        
+        .promo-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
 
         /* --- HEADER & NAVIGASI --- */
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 15px 30px; z-index: 1000; transition: all 0.4s ease; }
@@ -182,6 +361,17 @@
             .hero p { font-size: 1rem; }
             .section-title { font-size: 2rem; }
             .section { padding: 60px 0; }
+            
+            /* Notifikasi responsif */
+            .promo-notification {
+                width: 90%;
+                right: -100%;
+                top: 80px;
+            }
+            
+            .promo-notification.show {
+                right: 5%;
+            }
         }
 
         /* Small Mobile */
@@ -194,6 +384,11 @@
             .features-grid, .stats-grid, .testimonials-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .footer-column { margin-bottom: 30px; }
+            
+            /* Notifikasi responsif */
+            .promo-notification {
+                top: 70px;
+            }
         }
 
 .video-bg {
@@ -210,6 +405,22 @@
     </style>
 </head>
 <body>
+
+    <!-- ==================== NOTIFIKASI PROMO ==================== -->
+    <div class="promo-notification" id="promoNotification">
+        <button class="promo-close" id="promoClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="promo-icon">
+            <i class="fas fa-gift"></i>
+        </div>
+        <div class="promo-content">
+            <h3 class="promo-title">Promo Spesial!</h3>
+            <p class="promo-description">Dapatkan diskon 20% untuk pelanggan baru</p>
+            <div class="promo-code">KODE: NEW20</div>
+            <a href="kontak.html" class="btn btn-primary" style="padding: 8px 15px; font-size: 0.9rem;">Gunakan Sekarang</a>
+        </div>
+    </div>
 
     <!-- ==================== HEADER ==================== -->
     <header class="header" id="main-header">
@@ -315,6 +526,30 @@
     </footer>
 
     <script>
+        // --- PROMO NOTIFICATION SCRIPT ---
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cek apakah user sudah melihat notifikasi
+            const hasSeenNotification = localStorage.getItem('hasSeenNotification');
+            
+            if (!hasSeenNotification) {
+                // Tampilkan notifikasi setelah 1 detik
+                setTimeout(function() {
+                    const notification = document.getElementById('promoNotification');
+                    notification.classList.add('show');
+                    
+                    // Simpan bahwa user sudah melihat notifikasi
+                    localStorage.setItem('hasSeenNotification', 'true');
+                    
+                    // Tidak ada auto-hide, biarkan user yang menutup manual
+                }, 1000);
+            }
+            
+            // Event listener untuk tombol tutup
+            document.getElementById('promoClose').addEventListener('click', function() {
+                document.getElementById('promoNotification').classList.remove('show');
+            });
+        });
+
         // --- STICKY HEADER SCRIPT ---
         const header = document.getElementById('main-header');
         window.addEventListener('scroll', () => {
